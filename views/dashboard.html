@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+    <link href="/static/materializ.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Adding the avatar and the lag out button to the header -->
+    <nav>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="right">
+                <img src="{{avatar}}" alt="avatar" class="circle" height="30px" width="30px">
+                <li>{{name}}</li>
+                <li><a href="/auth/logout"> Sign Out</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Adding the page body -->
+    <main>
+        <h3> Welcome {{name}}!</h3>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="collection">
+                        <li class="collection-item avatar">
+                             <img src="{{avatar}}" alt="avatar" class="circle">
+                            <span class="title">Name: {{name}}</span>
+                            <p>Google Id: {{googleid}}</p>
+                            <p>Email: {{email}}</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col s12 m4 center">
+                    <div>
+                        <!-- If file upload successful -->
+                        {% if (file == "uploaded") %}
+                        <div class="light-blue lighten-1" style="padding: 2px 10px">
+                            <p> Upload Successful. </p>
+                        </div>
+                        {% elif (file == "notuploaded") %}
+                        <!-- if file upload not successful -->
+                        <div class="light-blue lighten-1" style="padding: 2px 10px">
+                            <p>File upload failed. Please try again</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                        <div class="file-field input-field">
+                            <!-- Browse button -->
+                            <div class="btn">
+                                <span> Browse </span>
+                                <input type="file" required name="file_upload">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <button style="display: block; margin: 0 auto" class="btn waves-effect waves-light"
+                            type="submit"> Upload to Google Drive </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+</body>
+
+</html>
